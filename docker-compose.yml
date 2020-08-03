@@ -2,6 +2,7 @@ version: "3.7"
 services:
     app:
         container_name: webapp
+        env_file: .env
         restart: always
         build: .
         ports:
@@ -14,13 +15,13 @@ services:
             - ./webapp:/opt/webapp
     mongo:
         container_name: mongo
-        image: mongo
+        image: mongo:latest
         ports:
-            - "27018:27017"
+            - "27017-27019:27017-27019"
         networks:
             - nodeapp-network
         volumes:
-            - ./webapp:/opt/mongo
+            - ./mongo-volume:/opt/db
 
 networks:
     nodeapp-network:
