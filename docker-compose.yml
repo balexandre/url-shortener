@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+    app:
+        container_name: webapp
+        restart: always
+        build: .
+        ports:
+            - "8080:8080"
+        networks:
+            - nodeapp-network
+        depends_on:
+            - mongo
+        volumes:
+            - ./webapp:/opt/webapp
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports:
+            - "27018:27017"
+        networks:
+            - nodeapp-network
+        volumes:
+            - ./webapp:/opt/mongo
+
+networks:
+    nodeapp-network:
+        driver: bridge
