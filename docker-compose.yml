@@ -17,7 +17,7 @@ services:
         container_name: mongo
         image: mongo:latest
         ports:
-            - "27017-27019:27017-27019"
+            - "27017:27017"
         networks:
             - nodeapp-network
         volumes:

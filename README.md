@@ -23,9 +23,7 @@ To start/stop the container, simply run `docker start mongodb` or `docker stop m
 
 Warning: as we've not specified a data volume, every time you restart your machine the database will be empty
 
-# Run and deploy with Docker
-
-as Heroku lost the [ability to have a MongoDB for free](https://devcenter.heroku.com/changelog-items/1823), I choose to [containerize the entire solution](https://devcenter.heroku.com/articles/local-development-with-docker-compose); the `docker-compose.yml` has a simple setup that makes this web application run together with the MongoDB image
+# Run and deploy with Docker locally
 
 just build and started with
 
@@ -34,9 +32,15 @@ docker-compose build
 docker-compose up
 ```
 
+or in one command (it will build if not available)
+
+```bash
+docker-compose up --build
+```
+
 you will have both images running locally at http://localhost:8080
 
-## Deploy docker-compose to Heroku
+## Deploying a docker-compose to Heroku
 
 it's pretty simple, all you need is to have Heroku CLI installed and do: 
 
@@ -45,6 +49,8 @@ it's pretty simple, all you need is to have Heroku CLI installed and do:
 - `heroku container:push web` to push the image to the registry
 - `heroku container:release web` to deploy the image
 
-# Available on Heroku
+## Available on Heroku
 
-the API is available on [Heroku](https://heroku.com) as https://ba-url-shortener.herokuapp.com/ (it is running on a free server, so it will sleep if no traffic for the last 30min)
+~~the API is available on [Heroku](https://heroku.com) as https://ba-url-shortener.herokuapp.com/ (it is running on a free server, so it will sleep if no traffic for the last 30min)~~
+
+Heroku does not support docker-compose files, only Dockerfiles that will rely on the adds-ons for extra services. As MongoDB is [no longer a supported add on](https://devcenter.heroku.com/changelog-items/1823), we can't push the docker-compose file as before. More info on Heroku docker images [here](https://stackoverflow.com/q/46904060/28004) and [here](https://devcenter.heroku.com/articles/build-docker-images-heroku-yml).
