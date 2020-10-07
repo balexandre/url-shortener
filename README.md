@@ -23,6 +23,10 @@ To start/stop the container, simply run `docker start mongodb` or `docker stop m
 
 Warning: as we've not specified a data volume, every time you restart your machine the database will be empty
 
+in your [Docker Desktop](https://www.docker.com/products/docker-desktop) dashboard you should see something like
+
+![](https://i.stack.imgur.com/nSQx9.png)
+
 # Run and deploy with Docker locally
 
 just build and started with
